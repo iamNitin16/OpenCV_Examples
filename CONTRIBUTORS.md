@@ -13,15 +13,16 @@ git clone https://github.com/iamNitin16/OpenCV_Examples.git
 -	Then create a seperate branch with a `branch-name` that suits your example that you are going to add and implement, and checkout that branch. You can do it in two ways:-
 	-	You can create and checkout the newly created branch using a single command:-
 
-```git
-git checkout -b branch-name
-```
+	```git
+	git checkout -b branch-name
+	```
+	
 	-	Or, you can create a branch first and then switch using the following command
 	
-```git
-git branch branch-name
-git checkout branch-name
-```
+	```git
+	git branch branch-name
+	git checkout branch-name
+	```
 
 -	After creating branch, create a seperate repository for your *OpenCV Example* and inside your `example-directory` create `src` folder and put all your **C/C++** code out there. Commit your changes and create a *pull-request*. Then we will review your code and if it looks good to us then we will merge it to our repository.
 ***Note:- Please add README.md to your `example-directory` along with the build and run instructions.***
@@ -31,21 +32,24 @@ git checkout branch-name
 If you want to improve already existing code then follow these instructions carefully:-
 
 -	First you need to clone this repository using the `git clone command`
+
 ```git
 git clone https://github.com/iamNitin16/OpenCV_Examples.git
 ```
+
 -	Then create a seperate branch with a `branch-name` that suits your example that you are going to add and implement, and checkout that branch. You can do it in two ways:-
 	-	You can create and checkout the newly created branch using a single command:-
 
-```git
-git checkout -b branch-name
-```
+	```git
+	git checkout -b branch-name
+	```
+
 	-	Or, you can create a branch first and then switch using the following command
 	
-```git
-git branch branch-name
-git checkout branch-name
-```
+	```git
+	git branch branch-name
+	git checkout branch-name
+	```
 
 -	After creating branch, update the changes you want to perform. Commit your changes and create a *pull-request*. Then we will review your code and if it looks good to us then we will merge it to our repository.
 
