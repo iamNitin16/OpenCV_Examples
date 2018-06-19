@@ -1,6 +1,7 @@
 # Capture Video
 
 This repository contains an example of **OpenCV Library** for capturing Video using webcam. This repo is basically developed for learning purpose. The output of this project looks something like the one below:-
+
 ![output](images/output.png)
 
 ## Build & Run Instructions
