@@ -14,11 +14,11 @@ using namespace std;
 using namespace cv;
 
 int H_MIN = 0;
-int H_MAX = 256;
+int H_MAX = 0;
 int S_MIN = 0;
-int S_MAX = 256;
+int S_MAX = 0;
 int V_MIN = 0;
-int V_MAX = 256;
+int V_MAX = 0;
 
 char * trackbar_window_name = "trackbars";
 
@@ -42,12 +42,12 @@ void on_trackbar_change (int val, void * event) {
 */
 void init_trackbars () {
 	namedWindow(trackbar_window_name, WINDOW_AUTOSIZE);
-	createTrackbar("H_MIN", trackbar_window_name, &H_MIN, H_MAX, on_trackbar_change);
-	createTrackbar("H_MAX", trackbar_window_name, &H_MAX, H_MAX, on_trackbar_change);
-	createTrackbar("S_MIN", trackbar_window_name, &S_MIN, S_MAX, on_trackbar_change);
-	createTrackbar("S_MAX", trackbar_window_name, &S_MAX, S_MAX, on_trackbar_change);
-	createTrackbar("V_MIN", trackbar_window_name, &V_MIN, V_MAX, on_trackbar_change);
-	createTrackbar("V_MAX", trackbar_window_name, &V_MAX, V_MAX, on_trackbar_change);
+	createTrackbar("H_MIN", trackbar_window_name, &H_MIN, 260, on_trackbar_change);
+	createTrackbar("H_MAX", trackbar_window_name, &H_MAX, 260, on_trackbar_change);
+	createTrackbar("S_MIN", trackbar_window_name, &S_MIN, 260, on_trackbar_change);
+	createTrackbar("S_MAX", trackbar_window_name, &S_MAX, 260, on_trackbar_change);
+	createTrackbar("V_MIN", trackbar_window_name, &V_MIN, 260, on_trackbar_change);
+	createTrackbar("V_MAX", trackbar_window_name, &V_MAX, 260, on_trackbar_change);
 }
 
 int main(int argc, char ** argv) {
@@ -80,10 +80,10 @@ int main(int argc, char ** argv) {
 
 		inRange(hsv_frame, Scalar(H_MIN, S_MIN, V_MIN), Scalar(H_MAX, S_MAX, V_MAX), hsv_threshold_frame);
 
-		split(hsv_threshold_frame, hsv_channels);
+		split(hsv_frame, hsv_channels);
 
 		imshow("RGB Video", rgb_frame);
-		imshow("HSV Video", hsv_frame);
+		imshow("HSV Video", hsv_threshold_frame);
 		imshow("H Video", hsv_channels[0]);
 		imshow("S Video", hsv_channels[1]);
 		imshow("V Video", hsv_channels[2]);
