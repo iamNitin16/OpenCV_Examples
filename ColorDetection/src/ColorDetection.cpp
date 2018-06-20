@@ -20,6 +20,36 @@ int S_MAX = 256;
 int V_MIN = 0;
 int V_MAX = 256;
 
+char * trackbar_window_name = "trackbars";
+
+/* Function: on_trackbar_change
+*  Callback function to handle changes in Trackbars.
+*
+*  Parameters: void
+*  Returns: void
+*/
+
+void on_trackbar_change (int val, void * event) {
+
+}
+
+/* Function: init_trackbars
+*  A function to create different trackbars to easily change
+*  value of HSV in a hsv_frame.
+*
+*  Parameters: void
+*  Returns: void
+*/
+void init_trackbars () {
+	namedWindow(trackbar_window_name, WINDOW_AUTOSIZE);
+	createTrackbar("H_MIN", trackbar_window_name, &H_MIN, H_MAX, on_trackbar_change);
+	createTrackbar("H_MAX", trackbar_window_name, &H_MAX, H_MAX, on_trackbar_change);
+	createTrackbar("S_MIN", trackbar_window_name, &S_MIN, S_MAX, on_trackbar_change);
+	createTrackbar("S_MAX", trackbar_window_name, &S_MAX, S_MAX, on_trackbar_change);
+	createTrackbar("V_MIN", trackbar_window_name, &V_MIN, V_MAX, on_trackbar_change);
+	createTrackbar("V_MAX", trackbar_window_name, &V_MAX, V_MAX, on_trackbar_change);
+}
+
 int main(int argc, char ** argv) {
 	/* capture via webcam, 0 - is for first camera which is webcam */
 	VideoCapture cap(0);
@@ -38,6 +68,8 @@ int main(int argc, char ** argv) {
 	namedWindow("H Video", WINDOW_AUTOSIZE);
 	namedWindow("S Video", WINDOW_AUTOSIZE);
 	namedWindow("V Video", WINDOW_AUTOSIZE);
+
+	init_trackbars();
 
 	/* continuously capture video frames */
 	while (1) {
