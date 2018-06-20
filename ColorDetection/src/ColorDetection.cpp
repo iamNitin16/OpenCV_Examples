@@ -8,30 +8,50 @@
 /* Header file for opencv */
 #include <opencv2/core.hpp>
 #include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
 
 using namespace std;
+using namespace cv;
+
+int H_MIN = 0;
+int H_MAX = 256;
+int S_MIN = 0;
+int S_MAX = 256;
+int V_MIN = 0;
+int V_MAX = 256;
 
 int main(int argc, char ** argv) {
 	/* capture via webcam, 0 - is for first camera which is webcam */
-	cv::VideoCapture cap(0);
+	VideoCapture cap(0);
 	if(!cap.isOpened()) {
 		cout << "Error in opening webcam" << endl;
 		return -1;
 	}
 
 	/* mar object to store video frames */
-	cv::Mat rgb_frame;
-	cv::Mat hsv_frame;
+	Mat rgb_frame;
+	Mat hsv_frame;
+	vector<Mat> hsv_channels;
 
-	cv::namedWindow("RGB Video", WINDOW_AUTOSIZE);
-	cv::namedWindow("HSV Video", WINDOW_AUTOSIZE);
+	namedWindow("RGB Video", WINDOW_AUTOSIZE);
+	namedWindow("HSV Video", WINDOW_AUTOSIZE);
+	namedWindow("H Video", WINDOW_AUTOSIZE);
+	namedWindow("S Video", WINDOW_AUTOSIZE);
+	namedWindow("V Video", WINDOW_AUTOSIZE);
 
 	/* continuously capture video frames */
 	while (1) {
-		cap >> frame;
-		cv::cvtColor(rgb_frame, hsv_frame, CV_BGR2HSV);
-		cv::imshow("RGB Video", rgb_frame);
-		cv::imshow("HSV Video", hsv_frame);
+		cap >> rgb_frame;
+		
+		cvtColor(rgb_frame, hsv_frame, CV_BGR2HSV);
+
+		split(hsv_frame, hsv_channels);
+
+		imshow("RGB Video", rgb_frame);
+		imshow("HSV Video", hsv_frame);
+		imshow("H Video", hsv_channels[0]);
+		imshow("S Video", hsv_channels[1]);
+		imshow("V Video", hsv_channels[2]);
 		if(waitKey(33) >= 0) break; // if user press any key exit
 	}
 
