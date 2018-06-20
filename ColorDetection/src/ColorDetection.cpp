@@ -61,6 +61,7 @@ int main(int argc, char ** argv) {
 	/* mar object to store video frames */
 	Mat rgb_frame;
 	Mat hsv_frame;
+	Mat hsv_threshold_frame;
 	vector<Mat> hsv_channels;
 
 	namedWindow("RGB Video", WINDOW_AUTOSIZE);
@@ -77,7 +78,9 @@ int main(int argc, char ** argv) {
 		
 		cvtColor(rgb_frame, hsv_frame, CV_BGR2HSV);
 
-		split(hsv_frame, hsv_channels);
+		inRange(hsv_frame, Scalar(H_MIN, S_MIN, V_MIN), Scalar(H_MAX, S_MAX, V_MAX), hsv_threshold_frame);
+
+		split(hsv_threshold_frame, hsv_channels);
 
 		imshow("RGB Video", rgb_frame);
 		imshow("HSV Video", hsv_frame);
